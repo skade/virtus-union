@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Virtus::Union::VERSION
   spec.authors       = ["Florian Gilcher"]
   spec.email         = ["florian.gilcher@asquera.de"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{A union type for Virtus embedded values, providing some flexibility in what to put into your fields.}
+  spec.summary       = %q{A union type for Virtus embedded values.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -20,5 +20,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec"
   spec.add_dependency "virtus"
 end

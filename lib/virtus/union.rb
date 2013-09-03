@@ -17,8 +17,8 @@ module Virtus
       new(discrimitator, types)
     end
 
-    def each
-      types.each
+    def each(&block)
+      types.each(&block)
     end
   end
 end

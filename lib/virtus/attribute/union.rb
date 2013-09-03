@@ -21,7 +21,12 @@ module Virtus
       def coerce(value)
         type_tag = value[options[:discriminator]]
         type_tag = @union_attributes[:discriminator].coerce(type_tag)
-        @union_attributes[type_tag].coerce(value)
+
+        if attribute = @union_attributes[type_tag]
+          attribute.coerce(value)
+        else
+          nil
+        end
       end
     end
   end
