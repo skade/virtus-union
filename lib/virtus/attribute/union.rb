@@ -1,5 +1,14 @@
+# encoding: utf-8
+
 module Virtus
+  # Abstract class implementing base API for attribute types
+  #
+  # @abstract
   class Attribute
+    # Implements a Union attribute type, covering multiple EmbeddedValues
+    #
+    # @see Virtus::Union
+    # @api private
     class Union < EmbeddedValue
       primitive Virtus::Union
 
@@ -26,10 +35,8 @@ module Virtus
       #
       # @api private
       def self.merge_options(type, options)
+        options.merge type.options
         super
-        options[:types] = type.types
-        options[:discriminator] = type.discriminator
-        options
       end
 
       # Coerce a given value to the correct type given in the
@@ -39,15 +46,22 @@ module Virtus
       #
       # @return [Virtus] The coerced value.
       def coerce(value)
-        type_tag = value[options[:discriminator]]
-        type_tag = @union_attributes[:discriminator].coerce(type_tag)
+        attribute = fetch_union_attribute(value)
 
-        if attribute = @union_attributes[type_tag]
+        if attribute
           attribute.coerce(value)
-        else
-          nil
         end
       end
+
+      private
+        def fetch_union_attribute(value)
+          @union_attributes[fetch_type_tag(value)]
+        end
+
+        def fetch_type_tag(value)
+          type_tag = value[options[:discriminator]]
+          @union_attributes[:discriminator].coerce(type_tag)
+        end
     end
   end
 end

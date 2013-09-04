@@ -1,4 +1,5 @@
-require "bundler/gem_tasks"
-require "rspec/core/rake_task"
+require 'bundler/gem_tasks'
 
-RSpec::Core::RakeTask.new("specs")
+# Added by devtools
+require 'devtools'
+Devtools.init_rake_tasks

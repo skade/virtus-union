@@ -49,8 +49,8 @@ A union tries do detect the actual type by looking at the `discriminator` field 
 
 ```ruby
 Configurable.new(
-  :option => {:type => "simple", :value => "Foobar"}
-  :options_in_an_array => [{:type => "complex", :value => {:max => 100}}]
+  :option => {:type => 'simple', :value => 'Foobar'}
+  :options_in_an_array => [{:type => 'complex', :value => {:max => 100}}]
 )
 ```
 
