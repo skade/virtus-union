@@ -23,7 +23,7 @@ describe Virtus::Attribute::Union, '#coerce' do
     attribute :b, String
   end
 
-  let(:object)        { described_class.new(name, options)    }
+  let(:object)        { described_class.new(name, options)   }
   let(:discriminator) { :type                                 }
   let(:types)         { { a: A, b: B }                        }
   let(:options)       { { discriminator: discriminator, types: types }}
@@ -45,5 +45,19 @@ describe Virtus::Attribute::Union, '#coerce' do
     let(:value)       { { type: :c, c: 'bar' }                }
 
     it { should be(nil) }
+  end
+
+  context 'when the value is a known type already' do
+    let(:value)       { A.new                                 }
+
+    it { should be(value) }
+  end
+
+  context 'without discriminator' do
+    let(:options)     { { types: types } }
+    let(:types)       { { 'Fixnum' => Fixnum }}
+    let(:value)       { 1 }
+
+    it { should be(value) }
   end
 end

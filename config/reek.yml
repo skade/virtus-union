@@ -23,7 +23,9 @@ DuplicateMethodCall:
   allow_calls: []
 FeatureEnvy:
   enabled: true
-  exclude: []
+  exclude: [
+    "Virtus::Union#extract_discriminator"
+  ]
 IrresponsibleModule:
   enabled: true
   exclude: []
@@ -62,7 +64,7 @@ TooManyStatements:
   enabled: true
   exclude:
   - each
-  max_statements: 2
+  max_statements: 4
 UncommunicativeMethodName:
   enabled: true
   exclude: []

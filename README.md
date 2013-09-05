@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-`virtus-union` adds an additional `EmbeddedValue` subtype to virtus to cover unions. Usage:
+`virtus-union` adds an additional `EmbeddedValue` subtype to virtus to cover unions. Example:
 
 ```ruby
 class SimpleOption
@@ -56,15 +56,19 @@ Configurable.new(
 
 Be aware that the `type` attribute is not automatically generated.
 
-## Missing
+The `Union` can be constructed in the following ways:
 
-This only works for proper embedded values. Any suggestions for things like:
-
-```ruby
-Union[String, Integer]
 ```
-
-Are accepted.
+# a bare type list
+# no coercion will take place, only type checking
+Union[String, Fixnum]
+# a discriminator and a types with keys
+# values that have a discriminator field that matchs one
+# of the keys will be coerced.
+Union[:type, :my_type => MyVirtusType, :my_other_type => AnotherVirtusType]
+# Mix and match
+Union[:type, Fixnum, :complex => ComplexType]
+```
 
 ## Missing, but not missed
 
